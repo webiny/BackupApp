@@ -1,0 +1,7 @@
+{
+    "name": "webiny/backup-app",
+    "type": "webiny-app",
+    "require": {
+        "webiny/backup-service": "~0"
+    }
+}
