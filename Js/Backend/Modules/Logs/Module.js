@@ -1,7 +1,7 @@
 import Webiny from 'Webiny';
 import Views from './Views/Views';
 
-class Settings extends Webiny.Module {
+class Logs extends Webiny.Module {
 
     init() {
         const Menu = Webiny.Ui.Menu;
@@ -20,4 +20,4 @@ class Settings extends Webiny.Module {
     }
 }
 
-export default Settings;
+export default Logs;

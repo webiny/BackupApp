@@ -8,19 +8,19 @@ class LogDetails extends Webiny.Ui.View {
 LogDetails.defaultProps = {
 
     renderer() {
-        const statProps = {
+        const logProps = {
             api: '/entities/backup-app/log',
             url: this.props.log,
-            fields: '*, log'
+            fields: 'log'
         };
 
         return (
-            <Ui.Data {...statProps}>
-                {errorData => (
+            <Ui.Data {...logProps}>
+                {data => (
                     <Ui.Grid.Row>
                         <Ui.Grid.Col all={12}>
-                            <Ui.CodeHighlight language="json">
-                                {JSON.stringify(errorData.clientData, null, 2)}
+                            <Ui.CodeHighlight language="shell">
+                                {data.log}
                             </Ui.CodeHighlight>
                         </Ui.Grid.Col>
                     </Ui.Grid.Row>
