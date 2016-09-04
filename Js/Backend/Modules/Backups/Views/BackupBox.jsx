@@ -21,7 +21,7 @@ class BackupBox extends Webiny.Ui.View {
 
         // show modal box
         api.get('?name=' + this.props.backup).then((response) => {
-            if (response.data.data.list.length < 1) {
+            if (response.getData('list').length < 1) {
                 this.setState({
                     status: 'danger',
                     statusMsg: 'Backup doesn\'t exist'
@@ -30,7 +30,7 @@ class BackupBox extends Webiny.Ui.View {
                 return;
             }
 
-            const backup = response.data.data.list[0];
+            const backup = response.getData('list')[0];
 
             // check when the backup was created
             const date1 = new Date();
@@ -101,7 +101,7 @@ BackupBox.defaultProps = {
                                     <hr/>
                                     <Ui.Alert type={this.state.status}>{this.state.statusMsg}</Ui.Alert>
                                     <hr/>
-                                    <Ui.Button onClick={() => showView('backupDetailsModalView')()}>View details</Ui.Button>
+                                    <Ui.Button onClick={showView('backupDetailsModalView')}>View details</Ui.Button>
                                 </Ui.Tile.Body>
                             </Ui.Tile.Tile>
                         </view>
