@@ -6,6 +6,7 @@ set_time_limit(0);
 use Apps\BackupApp\Php\Entities\Backup;
 use Apps\BackupApp\Php\Entities\Log;
 use Apps\Core\Php\DevTools\Exceptions\AppException;
+use Apps\Core\Php\DevTools\Interfaces\PublicApiInterface;
 use Apps\Core\Php\DevTools\Services\AbstractService;
 use Apps\Core\Php\DevTools\WebinyTrait;
 use Apps\Core\Php\Entities\Setting;
@@ -15,7 +16,7 @@ use Apps\Core\Php\Entities\Setting;
  *
  * Runs the backup cron job
  */
-class Cron extends AbstractService
+class Cron extends AbstractService implements PublicApiInterface
 {
     use WebinyTrait;
 
