@@ -3,6 +3,7 @@ namespace Apps\BackupApp\Php\Services;
 
 set_time_limit(0);
 
+use Apps\BackupApp\Php\Entities\Backup;
 use Apps\BackupApp\Php\Entities\Log;
 use Apps\Core\Php\DevTools\Exceptions\AppException;
 use Apps\Core\Php\DevTools\Services\AbstractService;
@@ -47,13 +48,17 @@ class Cron extends AbstractService
 
         try {
             $backupLog = $service->createBackup();
-            
+
             // store log info
             $logEntity->successful = $service->isSuccessful();
             $logEntity->log = $backupLog;
             $logEntity->executionTime = $service->getExecutionTime();
-            $logEntity->backupsCreated = $service->getCreatedBackups()['local'];
+            $createdBackups = $service->getCreatedBackups()['s3'];
+            $logEntity->backupsCreated = $createdBackups;
             $logEntity->save();
+
+            // update the latest backup entity
+            $this->updateBackupList($createdBackups);
         } catch (\Exception $e) {
             $logEntity->successful = $service->isSuccessful();
             $logEntity->log = 'Error: ' . $e->getMessage();
@@ -131,8 +136,8 @@ class Cron extends AbstractService
             'MongoDatabases'    => $databaseConfigs,
             'TempPath'          => '/tmp/backups/',
             'Frequency'         => ['Week', 'Month'],
-            'BackupStoragePath' => "/tmp/storedBackups"
-            // 'S3'             => $s3Config
+            'BackupStoragePath' => '/tmp/storedBackups',
+            'S3'                => $s3Config
         ];
 
         // check if the user defined an encryption key
@@ -144,5 +149,46 @@ class Cron extends AbstractService
         }
 
         return $config;
+    }
+
+    private function updateBackupList($createdBackups)
+    {
+        // we expect the daily backup to be created
+        if (isset($createdBackups['24h'])) {
+            // if current daily backup exists in the databases,
+            // we need to move that to 48h and set the current daily to the newly created backup file
+            $backup48Old = Backup::findOne(['name' => '48h']);
+            if ($backup48Old) {
+                $backup48Old->delete();
+            }
+
+            $backup24Old = Backup::findOne(['name' => '24h']);
+            if ($backup24Old) {
+                $backup24Old->order = 2;
+                $backup24Old->name = '48h';
+                $backup24Old->filename = $createdBackups['48h']['filename'];
+                $backup24Old->save();
+            }
+        }
+
+        // update backup groups
+        $backupGroups = ['24h' => 1, 'weekly' => 3, 'monthly' => 4];
+        foreach ($backupGroups as $bg => $order) {
+            if (isset($createdBackups[$bg])) {
+                $backupTemp = Backup::findOne(['name' => $bg]);
+                if ($backupTemp) {
+                    $backupTemp->delete();
+                }
+
+                $backupTemp = new Backup();
+                $backupTemp->order = $order;
+                $backupTemp->name = $bg;
+                $backupTemp->size = $createdBackups[$bg]['size'];
+                $backupTemp->encrypted = $createdBackups[$bg]['encrypted'];
+                $backupTemp->filename = $createdBackups[$bg]['filename'];
+                $backupTemp->dateCreated = time();
+                $backupTemp->save();
+            }
+        }
     }
 }

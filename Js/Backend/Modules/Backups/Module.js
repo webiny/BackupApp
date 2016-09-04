@@ -1,23 +1,23 @@
 import Webiny from 'Webiny';
 import Views from './Views/Views';
 
-class Logs extends Webiny.Module {
+class Backups extends Webiny.Module {
 
     init() {
         const Menu = Webiny.Ui.Menu;
 
         this.registerMenus(
             new Menu('DevTools', [
-                new Menu('Backup App', [
-                    new Menu('Logs', 'BackupApp.Logs')
+                new Menu('Backups', [
+                    new Menu('Backups', 'BackupApp.Backups')
                 ])
             ], 'icon-bell')
         );
 
         this.registerRoutes(
-            new Webiny.Route('BackupApp.Logs', '/backup-app/logs', Views.LogList, 'Backup App - Logs')
+            new Webiny.Route('BackupApp.Backups', '/backup-app/backups', Views.BackupList, 'Backup App - Backups')
         );
     }
 }
 
-export default Logs;
+export default Backups;

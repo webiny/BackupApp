@@ -8,7 +8,7 @@ class Settings extends Webiny.Module {
 
         this.registerMenus(
             new Menu('DevTools', [
-                new Menu('Backup App', [
+                new Menu('Backups', [
                     new Menu('Settings', 'BackupApp.Settings')
                 ])
             ], 'icon-bell')

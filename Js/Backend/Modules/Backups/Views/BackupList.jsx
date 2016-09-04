@@ -1,12 +1,13 @@
 import Webiny from 'Webiny';
 const Ui = Webiny.Ui.Components;
 import LogDetails from './LogDetails';
+import BackupBox from './BackupBox';
 
-class LogList extends Webiny.Ui.View {
+class BackupList extends Webiny.Ui.View {
 
 }
 
-LogList.defaultProps = {
+BackupList.defaultProps = {
 
     renderer() {
         const listProps = {
@@ -19,16 +20,26 @@ LogList.defaultProps = {
         return (
             <webiny-backup-app>
                 <Ui.View.List>
-                    <Ui.View.Header title="Backup logs"/>
+                    <Ui.View.Header title="Backups"/>
 
                     <Ui.View.Body>
                         <Ui.Grid.Row>
-                            <Ui.Grid.Col all={12}>
-                                <Ui.Form.Fieldset title="Latest backup"/>
-
-                                
-
+                            <Ui.Grid.Col all={3}>
+                                <BackupBox backup="24h"/>
                             </Ui.Grid.Col>
+
+                            <Ui.Grid.Col all={3}>
+                                <BackupBox backup="48h"/>
+                            </Ui.Grid.Col>
+
+                            <Ui.Grid.Col all={3}>
+                                <BackupBox backup="weekly"/>
+                            </Ui.Grid.Col>
+
+                            <Ui.Grid.Col all={3}>
+                                <BackupBox backup="monthly"/>
+                            </Ui.Grid.Col>
+
                         </Ui.Grid.Row>
                     </Ui.View.Body>
                 </Ui.View.List>
@@ -36,7 +47,7 @@ LogList.defaultProps = {
                 <Ui.View.List>
                     <Ui.View.Body>
                         <Ui.List.ApiContainer {...listProps}>
-                            {(backupLogs, meta, list) => {
+                            {(backupLogs, meta) => {
                                 return (
                                     <Ui.Grid.Row>
                                         <Ui.Grid.Col all={12}>
@@ -53,11 +64,11 @@ LogList.defaultProps = {
                                                         <Ui.ExpandableList.Row key={row.id}>
                                                             <Ui.ExpandableList.Field all={3} name="Successful" className="text-center">
                                                                 {() => {
+                                                                    let success = <span className="badge badge-danger">No</span>;
                                                                     if (row.successful) {
-                                                                        return <span className="badge badge-success">Yes</span>;
-                                                                    } else {
-                                                                        return <span className="badge badge-danger">No</span>;
+                                                                        success = <span className="badge badge-success">Yes</span>;
                                                                     }
+                                                                    return success;
                                                                 }}
                                                             </Ui.ExpandableList.Field>
                                                             <Ui.ExpandableList.Field all={3} name="Date">
@@ -95,4 +106,4 @@ LogList.defaultProps = {
     }
 };
 
-export default LogList;
+export default BackupList;

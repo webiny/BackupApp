@@ -5,7 +5,7 @@ use Apps\Core\Php\DevTools\WebinyTrait;
 use Apps\Core\Php\DevTools\Entity\AbstractEntity;
 
 /**
- * Class BackupApp
+ * Class Log
  *
  * @property string       $id
  * @property integer      $successful

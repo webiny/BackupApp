@@ -22,7 +22,7 @@ SettingsForm.defaultProps = {
                                             <Ui.Form.Fieldset title="S3 Credentials"/>
 
                                             <Ui.Input label="Access Id" name="settings.s3.accessId" validate="required"/>
-                                            <Ui.Input label="Access Key" name="settings.s3.accessKey" validate="required"/>
+                                            <Ui.Input type="password" label="Access Key" name="settings.s3.accessKey" validate="required"/>
 
                                         </Ui.Grid.Col>
 
@@ -75,7 +75,7 @@ SettingsForm.defaultProps = {
                                                 before it's transferred to S3.
                                             </Ui.Alert>
 
-                                            <Ui.Input label="Encryption Key" name="settings.encryptionKey" validate="required"/>
+                                            <Ui.Input type="password" label="Encryption Key" name="settings.encryptionKey"/>
 
                                         </Ui.Grid.Col>
                                         <Ui.Grid.Col all={12}>
@@ -85,7 +85,7 @@ SettingsForm.defaultProps = {
                                             </p>
                                             <pre>openssl bf -d &lt; $yourBackupFilename &gt; backup.restored.tar.gz</pre>
                                             <p>
-                                                This will prompt you for your passphrase. If the passphrase is correct, the archive will be
+                                                This will prompt you for your encryption key. If the key is correct, the archive will be
                                                 decrypted and then you can extract it.
                                             </p>
                                         </Ui.Grid.Col>
