@@ -22,7 +22,7 @@ SettingsForm.defaultProps = {
                                             <Ui.Form.Fieldset title="S3 Credentials"/>
 
                                             <Ui.Input label="Access Id" name="settings.s3.accessId" validate="required"/>
-                                            <Ui.Input type="password" label="Access Key" name="settings.s3.accessKey" validate="required"/>
+                                            <Ui.Password label="Access Key" name="settings.s3.accessKey" validate="required"/>
 
                                         </Ui.Grid.Col>
 
@@ -75,7 +75,7 @@ SettingsForm.defaultProps = {
                                                 before it's transferred to S3.
                                             </Ui.Alert>
 
-                                            <Ui.Input type="password" label="Encryption Key" name="settings.encryptionKey"/>
+                                            <Ui.Password label="Encryption Key" name="settings.encryptionKey"/>
 
                                         </Ui.Grid.Col>
                                         <Ui.Grid.Col all={12}>
