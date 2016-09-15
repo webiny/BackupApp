@@ -30,7 +30,7 @@ class Cron extends AbstractService implements PublicApiInterface
              * We run the backup process as a parallel process so the cron manager timeout doesn't abort the action in case the request times-out.
              */
             $cmd = 'curl -X GET ' . $this->wConfig()
-                                         ->get('Application.ApiPath') . '/services/backup-app/run-backup-background-process > /dev/null 2>&1 &';
+                                         ->get('Application.ApiPath') . '/services/backup-app/cron/run-backup-background-process > /dev/null 2>&1 &';
             exec($cmd);
 
             return ['msg' => 'Backup process started - please check the Backup App logs for result.'];
@@ -128,9 +128,6 @@ class Cron extends AbstractService implements PublicApiInterface
             'Region'     => $settings['s3']['region'],
             'Endpoint'   => $settings['s3']['endpoint']
         ];
-
-        // temp
-        $absolutePath .= '/Configs';
 
         $config = [
             'Folders'           => [$absolutePath],
