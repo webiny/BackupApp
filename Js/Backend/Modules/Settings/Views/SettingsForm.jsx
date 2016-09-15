@@ -8,7 +8,7 @@ class SettingsForm extends Webiny.Ui.View {
 SettingsForm.defaultProps = {
     renderer() {
         return (
-            <Ui.Settings id="backup-app">
+            <Ui.Settings id="backup-app" api="/entities/backup-app/settings">
                 {(model, container) => (
                     <Ui.View.Form>
                         <Ui.View.Header

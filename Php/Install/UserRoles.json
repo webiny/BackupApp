@@ -1,0 +1,8 @@
+[
+    {
+        "name": "Backups manager",
+        "slug": "manage-backups",
+        "description": "This role allows user to manage system backups and backup settings",
+        "permissions": ["manage-backups"]
+    }
+]

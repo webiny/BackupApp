@@ -1,0 +1,33 @@
+[
+    {
+        "name": "Manage backups",
+        "slug": "manage-backups",
+        "description": "Allows user to manage system backups",
+        "permissions": {
+            "entities": {
+                "Apps\\BackupApp\\Php\\Entities\\Backup": {
+                    "crudCreate": true,
+                    "crudRead": true,
+                    "crudUpdate": true,
+                    "crudDelete": true
+                },
+                "Apps\\BackupApp\\Php\\Entities\\Log": {
+                    "crudCreate": true,
+                    "crudRead": true,
+                    "crudDelete": true,
+                    "crudUpdate": true
+                },
+                "Apps\\BackupApp\\Php\\Entities\\Setting" : {
+                    "crudCreate" : true,
+                    "crudRead" : true,
+                    "crudUpdate" : true,
+                    "crudDelete" : true,
+                    "key/{key}" : {
+                        "get" : true,
+                        "patch" : true
+                    }
+                }
+            }
+        }
+    }
+]
