@@ -10,7 +10,7 @@ class Backups extends Webiny.Module {
             new Menu('DevTools', [
                 new Menu('Backups', [
                     new Menu('Backups', 'BackupApp.Backups')
-                ]).setRole('manage-backups')
+                ]).setRole('backup-app-manager')
             ], 'icon-bell')
         );
 

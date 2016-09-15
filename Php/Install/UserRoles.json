@@ -1,8 +1,10 @@
 [
     {
-        "name": "Backups manager",
-        "slug": "manage-backups",
+        "name": "Backups Manager",
+        "slug": "backup-app-manager",
         "description": "This role allows user to manage system backups and backup settings",
-        "permissions": ["manage-backups"]
+        "permissions": [
+            "backup-app-manage-backups"
+        ]
     }
 ]
