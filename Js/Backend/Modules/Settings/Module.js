@@ -7,7 +7,7 @@ class Settings extends Webiny.Module {
         const Menu = Webiny.Ui.Menu;
 
         this.registerMenus(
-            new Menu('DevTools', [
+            new Menu('System', [
                 new Menu('Backups', [
                     new Menu('Settings', 'BackupApp.Settings')
                 ]).setRole('backup-app-manager')
