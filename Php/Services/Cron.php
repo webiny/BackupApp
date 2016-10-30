@@ -59,7 +59,9 @@ class Cron extends AbstractService implements PublicApiInterface
             $logEntity->save();
 
             // update the latest backup entity
-            $this->updateBackupList($createdBackups);
+            if($logEntity->successful){
+                $this->updateBackupList($createdBackups);
+            }
         } catch (\Exception $e) {
             $logEntity->successful = $service->isSuccessful();
             $logEntity->log = 'Error: ' . $e->getMessage();
@@ -134,7 +136,6 @@ class Cron extends AbstractService implements PublicApiInterface
             'MongoDatabases'    => $databaseConfigs,
             'TempPath'          => '/tmp/backups/',
             'Frequency'         => ['Week', 'Month'],
-            'BackupStoragePath' => '/tmp/storedBackups',
             'S3'                => $s3Config
         ];
 
