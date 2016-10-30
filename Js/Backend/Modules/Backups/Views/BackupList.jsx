@@ -46,7 +46,7 @@ BackupList.defaultProps = {
 
                 <Ui.View.List>
                     <Ui.View.Body>
-                        <Ui.List.ApiContainer {...listProps}>
+                        <Ui.List {...listProps}>
                             {(backupLogs, meta) => {
                                 return (
                                     <Ui.Grid.Row>
@@ -98,7 +98,7 @@ BackupList.defaultProps = {
                                     </Ui.Grid.Row>
                                 );
                             }}
-                        </Ui.List.ApiContainer>
+                        </Ui.List>
                     </Ui.View.Body>
                 </Ui.View.List>
             </webiny-backup-app>

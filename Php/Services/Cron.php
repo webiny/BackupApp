@@ -6,7 +6,7 @@ set_time_limit(0);
 use Apps\BackupApp\Php\Entities\Backup;
 use Apps\BackupApp\Php\Entities\Log;
 use Apps\Core\Php\DevTools\Exceptions\AppException;
-use Apps\Core\Php\DevTools\Interfaces\PublicApiInterface;
+use Apps\Core\Php\DevTools\Interfaces\NoAuthorizationInterface;
 use Apps\Core\Php\DevTools\Services\AbstractService;
 use Apps\Core\Php\DevTools\WebinyTrait;
 use Apps\Core\Php\Entities\Setting;
@@ -16,14 +16,16 @@ use Apps\Core\Php\Entities\Setting;
  *
  * Runs the backup cron job
  */
-class Cron extends AbstractService implements PublicApiInterface
+class Cron extends AbstractService implements NoAuthorizationInterface
 {
     use WebinyTrait;
 
     function __construct()
     {
+        parent::__construct();
         /**
-         * @api.name Runs the backup cron job that creates a new backup archive
+         * @api.name Create backup
+         * @api.description Runs the backup cron job that creates a new backup archive
          */
         $this->api('get', '/create-backup', function () {
             /*

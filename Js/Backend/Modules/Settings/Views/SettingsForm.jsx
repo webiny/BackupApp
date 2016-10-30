@@ -15,7 +15,7 @@ SettingsForm.defaultProps = {
                             title="Backup App Settings"
                             description="Set your backup settings here"/>
                         <Ui.View.Body noPadding>
-                            <Ui.Tabs.Tabs size="large">
+                            <Ui.Tabs size="large">
                                 <Ui.Tabs.Tab label="S3 Backup Location" icon="fa-hdd-o">
                                     <Ui.Grid.Row>
                                         <Ui.Grid.Col all={6}>
@@ -110,7 +110,7 @@ SettingsForm.defaultProps = {
                                     <Ui.Copy.Input value={webinyApiPath + '/services/backup-app/cron/create-backup'}/>
                                 </Ui.Tabs.Tab>
 
-                            </Ui.Tabs.Tabs>
+                            </Ui.Tabs>
                         </Ui.View.Body>
                         <Ui.View.Footer align="right">
                             <Ui.Button type="primary" onClick={container.submit} label="Save settings"/>
