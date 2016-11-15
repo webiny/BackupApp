@@ -7,6 +7,7 @@ class SettingsForm extends Webiny.Ui.View {
 
 SettingsForm.defaultProps = {
     renderer() {
+        const awsRegionsLink = 'http://docs.aws.amazon.com/general/latest/gr/rande.html#apigateway_region';
         return (
             <Ui.Settings id="backup-app" api="/entities/backup-app/settings">
                 {(model, container) => (
@@ -43,14 +44,16 @@ SettingsForm.defaultProps = {
                                         <Ui.Grid.Col all={12}>
                                             <Ui.Form.Fieldset title="S3 Region"/>
                                             <Ui.Alert title="Region info:" close={false}>
-                                                For more information regarding AWS S3 regions, please visit <a
-                                                href="http://docs.aws.amazon.com/general/latest/gr/rande.html#apigateway_region"
-                                                target="_blank">this link</a>
+                                                For more information regarding AWS S3 regions, please visit
+                                                <a href={awsRegionsLink} target="_blank">this link</a>
                                             </Ui.Alert>
                                         </Ui.Grid.Col>
                                         <Ui.Grid.Col all={6}>
-                                            <Ui.Input label="Region" name="settings.s3.region" description="Example: eu-central-1"
-                                                      validate="required"/>
+                                            <Ui.Input
+                                                label="Region"
+                                                name="settings.s3.region"
+                                                description="Example: eu-central-1"
+                                                validate="required"/>
                                         </Ui.Grid.Col>
                                         <Ui.Grid.Col all={6}>
                                             <Ui.Input
@@ -77,6 +80,7 @@ SettingsForm.defaultProps = {
                                         </Ui.Grid.Col>
                                         <Ui.Grid.Col all={12}>
                                             <Ui.Form.Fieldset title="Decrypting your backup"/>
+
                                             <p>
                                                 To decrypt your backup, download the desired backup image from your S3 and run the following
                                                 command:
