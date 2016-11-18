@@ -8,7 +8,7 @@ class SettingsForm extends Webiny.Ui.View {
 SettingsForm.defaultProps = {
     renderer() {
         return (
-            <Ui.Settings id="backup-app" api="/entities/backup-app/settings">
+            <Ui.Settings api="/entities/backup-app/settings">
                 {(model, container) => (
                     <Ui.View.Form>
                         <Ui.View.Header
@@ -21,18 +21,18 @@ SettingsForm.defaultProps = {
                                         <Ui.Grid.Col all={6}>
                                             <Ui.Form.Fieldset title="S3 Credentials"/>
 
-                                            <Ui.Input label="Access Id" name="settings.s3.accessId" validate="required"/>
-                                            <Ui.Password label="Access Key" name="settings.s3.accessKey" validate="required"/>
+                                            <Ui.Input label="Access Id" name="s3.accessId" validate="required"/>
+                                            <Ui.Password label="Access Key" name="s3.accessKey" validate="required"/>
 
                                         </Ui.Grid.Col>
 
                                         <Ui.Grid.Col all={6}>
                                             <Ui.Form.Fieldset title="S3 Location"/>
 
-                                            <Ui.Input label="Bucket Name" name="settings.s3.bucket" validate="required"/>
+                                            <Ui.Input label="Bucket Name" name="s3.bucket" validate="required"/>
                                             <Ui.Input
                                                 label="Bucket Path"
-                                                name="settings.s3.remotePath"
+                                                name="s3.remotePath"
                                                 description="Example: Projects/MyProject/"
                                                 validate="required"/>
                                         </Ui.Grid.Col>
@@ -49,13 +49,13 @@ SettingsForm.defaultProps = {
                                             </Ui.Alert>
                                         </Ui.Grid.Col>
                                         <Ui.Grid.Col all={6}>
-                                            <Ui.Input label="Region" name="settings.s3.region" description="Example: eu-central-1"
+                                            <Ui.Input label="Region" name="s3.region" description="Example: eu-central-1"
                                                       validate="required"/>
                                         </Ui.Grid.Col>
                                         <Ui.Grid.Col all={6}>
                                             <Ui.Input
                                                 label="Endpoint"
-                                                name="settings.s3.endpoint"
+                                                name="s3.endpoint"
                                                 description="Example: http://s3.eu-central-1.amazonaws.com"
                                                 validate="required,url"/>
                                         </Ui.Grid.Col>
@@ -72,7 +72,7 @@ SettingsForm.defaultProps = {
                                                 before it's transferred to S3.
                                             </Ui.Alert>
 
-                                            <Ui.Password label="Encryption Key" name="settings.encryptionKey"/>
+                                            <Ui.Password label="Encryption Key" name="encryptionKey"/>
 
                                         </Ui.Grid.Col>
                                         <Ui.Grid.Col all={12}>

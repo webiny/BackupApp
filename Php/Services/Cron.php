@@ -5,11 +5,11 @@ set_time_limit(0);
 
 use Apps\BackupApp\Php\Entities\Backup;
 use Apps\BackupApp\Php\Entities\Log;
+use Apps\BackupApp\Php\Entities\Setting;
 use Apps\Core\Php\DevTools\Exceptions\AppException;
 use Apps\Core\Php\DevTools\Interfaces\NoAuthorizationInterface;
 use Apps\Core\Php\DevTools\Services\AbstractService;
 use Apps\Core\Php\DevTools\WebinyTrait;
-use Apps\Core\Php\Entities\Setting;
 
 /**
  * Class Cron
@@ -74,12 +74,11 @@ class Cron extends AbstractService implements NoAuthorizationInterface
     private function getConfig()
     {
         // load the mailer settings
-        $settings = Setting::findOne(['key' => 'backup-app']);
+        $settings = Setting::load();
 
         if (empty($settings)) {
             throw new AppException(sprintf('Unable to load Backup App settings'));
         }
-        $settings = $settings['settings'];
 
         // backup files under absolute path
         $absolutePath = realpath($this->wConfig()->get('Application.AbsolutePath', false));

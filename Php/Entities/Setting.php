@@ -8,5 +8,5 @@ namespace Apps\BackupApp\Php\Entities;
  */
 class Setting extends \Apps\Core\Php\Entities\Setting
 {
-
+    protected static $key = 'backup-app';
 }
