@@ -51,7 +51,7 @@ SettingsForm.defaultProps = {
                                         <Ui.Grid.Col all={6}>
                                             <Ui.Input
                                                 label="Region"
-                                                name="settings.s3.region"
+                                                name="s3.region"
                                                 description="Example: eu-central-1"
                                                 validate="required"/>
                                         </Ui.Grid.Col>
