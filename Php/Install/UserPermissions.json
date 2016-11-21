@@ -17,7 +17,7 @@
                     "crudDelete": true,
                     "crudUpdate": true
                 },
-                "Apps\\BackupApp\\Php\\Entities\\Setting": {
+                "Apps\\BackupApp\\Php\\Entities\\Settings": {
                     "/": {
                         "get": true,
                         "patch": true

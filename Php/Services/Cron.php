@@ -5,7 +5,7 @@ set_time_limit(0);
 
 use Apps\BackupApp\Php\Entities\Backup;
 use Apps\BackupApp\Php\Entities\Log;
-use Apps\BackupApp\Php\Entities\Setting;
+use Apps\BackupApp\Php\Entities\Settings;
 use Apps\Core\Php\DevTools\Exceptions\AppException;
 use Apps\Core\Php\DevTools\Interfaces\NoAuthorizationInterface;
 use Apps\Core\Php\DevTools\Services\AbstractService;
@@ -76,7 +76,7 @@ class Cron extends AbstractService implements NoAuthorizationInterface
     private function getConfig()
     {
         // load the mailer settings
-        $settings = Setting::load();
+        $settings = Settings::load();
 
         if (empty($settings)) {
             throw new AppException(sprintf('Unable to load Backup App settings'));
