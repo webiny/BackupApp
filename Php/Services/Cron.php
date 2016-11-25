@@ -7,7 +7,6 @@ use Apps\BackupApp\Php\Entities\Backup;
 use Apps\BackupApp\Php\Entities\Log;
 use Apps\BackupApp\Php\Entities\Settings;
 use Apps\Core\Php\DevTools\Exceptions\AppException;
-use Apps\Core\Php\DevTools\Interfaces\NoAuthorizationInterface;
 use Apps\Core\Php\DevTools\Services\AbstractService;
 use Apps\Core\Php\DevTools\WebinyTrait;
 
@@ -16,7 +15,7 @@ use Apps\Core\Php\DevTools\WebinyTrait;
  *
  * Runs the backup cron job
  */
-class Cron extends AbstractService implements NoAuthorizationInterface
+class Cron extends AbstractService
 {
     use WebinyTrait;
 
