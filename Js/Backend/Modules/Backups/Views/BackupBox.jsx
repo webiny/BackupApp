@@ -90,7 +90,7 @@ BackupBox.defaultProps = {
 
     renderer() {
         return (
-            <Ui.ViewSwitcher.Container>
+            <Ui.ViewSwitcher>
                 <Ui.ViewSwitcher.View view="backupBoxView" defaultView>
                     {showView => (
                         <view>
@@ -113,7 +113,7 @@ BackupBox.defaultProps = {
                 </Ui.ViewSwitcher.View>
 
 
-            </Ui.ViewSwitcher.Container>
+            </Ui.ViewSwitcher>
 
         );
     }
