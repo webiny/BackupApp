@@ -94,7 +94,7 @@ BackupBox.defaultProps = {
                 <Ui.ViewSwitcher.View view="backupBoxView" defaultView>
                     {showView => (
                         <view>
-                            <Ui.Tile.Tile>
+                            <Ui.Tile>
                                 <Ui.Tile.Header title={this.props.backup + ' backup'}/>
                                 <Ui.Tile.Body className="text-center">
                                     <Ui.Icon icon="fa fa-archive icon-4x" className={'text-' + this.state.status}/>
@@ -103,7 +103,7 @@ BackupBox.defaultProps = {
                                     <hr/>
                                     <Ui.Button onClick={showView('backupDetailsModalView')}>View details</Ui.Button>
                                 </Ui.Tile.Body>
-                            </Ui.Tile.Tile>
+                            </Ui.Tile>
                         </view>
                     )}
                 </Ui.ViewSwitcher.View>
