@@ -45,7 +45,7 @@ SettingsForm.defaultProps = {
                                             <Ui.Form.Fieldset title="S3 Region"/>
                                             <Ui.Alert title="Region info:" close={false}>
                                                 For more information regarding AWS S3 regions, please visit
-                                                <a href={awsRegionsLink} target="_blank">this link</a>
+                                                &nbsp;<a href={awsRegionsLink} target="_blank">this link</a>
                                             </Ui.Alert>
                                         </Ui.Grid.Col>
                                         <Ui.Grid.Col all={6}>
