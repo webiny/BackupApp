@@ -1,3 +1,14 @@
 import Webiny from 'Webiny';
+import Backups from './Modules/Backups';
+import Settings from './Modules/Settings';
 
-export default new Webiny.App('BackupApp.Backend');
+class Backup extends Webiny.App {
+    constructor() {
+        super('BackupApp.Backend');
+        this.modules = [
+            new Backups(this),
+            new Settings(this)
+        ];
+    }
+}
+Webiny.registerApp(new Backup());
