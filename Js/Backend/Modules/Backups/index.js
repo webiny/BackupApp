@@ -1,9 +1,10 @@
 import Webiny from 'Webiny';
 import Views from './Views/Views';
 
-class Backups extends Webiny.Module {
+class Module extends Webiny.Module {
 
     init() {
+        this.name = 'Backups';
         const Menu = Webiny.Ui.Menu;
 
         this.registerMenus(
@@ -20,4 +21,4 @@ class Backups extends Webiny.Module {
     }
 }
 
-export default Backups;
+export default Module;
