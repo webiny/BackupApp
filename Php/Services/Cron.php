@@ -30,8 +30,10 @@ class Cron extends AbstractService
             /*
              * We run the backup process as a parallel process so the cron manager timeout doesn't abort the action in case the request times-out.
              */
-            $cmd = 'curl -X GET ' . $this->wConfig()
-                                         ->get('Application.ApiPath') . '/services/backup-app/cron/run-backup-background-process > /dev/null 2>&1 &';
+
+            $token = '--header "X-Webiny-Authorization: ' . urlencode($this->wConfig()->get('Application.Acl.Token')) . '"';
+            $path = $this->wConfig()->get('Application.ApiPath') . '/services/backup-app/cron/run-backup-background-process';
+            $cmd = 'curl -X GET ' .$path.' '.$token.' --insecure > /dev/null 2>&1 &';
             exec($cmd);
 
             return ['msg' => 'Backup process started - please check the Backup App logs for result.'];
