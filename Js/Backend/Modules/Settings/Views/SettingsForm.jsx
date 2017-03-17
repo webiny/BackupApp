@@ -20,7 +20,7 @@ SettingsForm.defaultProps = {
                                 <Ui.Tabs.Tab label="S3 Backup Location" icon="fa-hdd-o">
                                     <Ui.Grid.Row>
                                         <Ui.Grid.Col all={6}>
-                                            <Ui.Form.Fieldset title="S3 Credentials"/>
+                                            <Ui.Form.Section title="S3 Credentials"/>
 
                                             <Ui.Input label="Access Id" name="s3.accessId" validate="required"/>
                                             <Ui.Password label="Access Key" name="s3.accessKey" validate="required"/>
@@ -28,7 +28,7 @@ SettingsForm.defaultProps = {
                                         </Ui.Grid.Col>
 
                                         <Ui.Grid.Col all={6}>
-                                            <Ui.Form.Fieldset title="S3 Location"/>
+                                            <Ui.Form.Section title="S3 Location"/>
 
                                             <Ui.Input label="Bucket Name" name="s3.bucket" validate="required"/>
                                             <Ui.Input
@@ -42,7 +42,7 @@ SettingsForm.defaultProps = {
 
                                     <Ui.Grid.Row>
                                         <Ui.Grid.Col all={12}>
-                                            <Ui.Form.Fieldset title="S3 Region"/>
+                                            <Ui.Form.Section title="S3 Region"/>
                                             <Ui.Alert title="Region info:" close={false}>
                                                 For more information regarding AWS S3 regions, please visit
                                                 &nbsp;<a href={awsRegionsLink} target="_blank">this link</a>
@@ -67,7 +67,7 @@ SettingsForm.defaultProps = {
                                 </Ui.Tabs.Tab>
 
                                 <Ui.Tabs.Tab label="Encryption" icon="fa-key">
-                                    <Ui.Form.Fieldset title="Encryption key"/>
+                                    <Ui.Form.Section title="Encryption key"/>
                                     <Ui.Grid.Row>
                                         <Ui.Grid.Col all={12}>
                                             <Ui.Alert title="Notice:" close={false}>
@@ -79,7 +79,7 @@ SettingsForm.defaultProps = {
 
                                         </Ui.Grid.Col>
                                         <Ui.Grid.Col all={12}>
-                                            <Ui.Form.Fieldset title="Decrypting your backup"/>
+                                            <Ui.Form.Section title="Decrypting your backup"/>
                                             <p>
                                                 To decrypt your backup, download the desired backup image from your S3 and run the following
                                                 command:
@@ -96,7 +96,7 @@ SettingsForm.defaultProps = {
                                 </Ui.Tabs.Tab>
 
                                 <Ui.Tabs.Tab label="Cron Setup Guide" icon="icon-info-circle">
-                                    <Ui.Form.Fieldset title="About"/>
+                                    <Ui.Form.Section title="About"/>
 
                                     <p>
                                         The Backup App needs to periodically trigger a service that actually creates the backup archives.
