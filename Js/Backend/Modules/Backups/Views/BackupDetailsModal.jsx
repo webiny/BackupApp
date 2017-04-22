@@ -1,5 +1,4 @@
 import Webiny from 'Webiny';
-const Ui = Webiny.Ui.Components;
 
 class BackupDetailsModal extends Webiny.Ui.ModalComponent {
 
@@ -8,6 +7,7 @@ class BackupDetailsModal extends Webiny.Ui.ModalComponent {
     }
 
     getBackupDetails(backup) {
+        const {Filters} = this.props;
         let backupDetails = '';
 
         if (backup.status === 'danger') {
@@ -49,13 +49,13 @@ class BackupDetailsModal extends Webiny.Ui.ModalComponent {
                     {backupMsg}
                     <dl className="dl-horizontal">
                         <dt>Date created</dt>
-                        <dd><Ui.Filters.DateTime value={backup.backupDetails.dateCreated}/></dd>
+                        <dd><Filters.DateTime value={backup.backupDetails.dateCreated}/></dd>
 
                         <dt>Filename</dt>
                         <dd>{backup.backupDetails.filename}</dd>
 
                         <dt>Size</dt>
-                        <dd><Ui.Filters.FileSize value={backup.backupDetails.size}/></dd>
+                        <dd><Filters.FileSize value={backup.backupDetails.size}/></dd>
 
                         <dt>Encrypted</dt>
                         <dd>{encrypted}</dd>
@@ -68,19 +68,20 @@ class BackupDetailsModal extends Webiny.Ui.ModalComponent {
     }
 
     renderDialog() {
+        const {Modal, Alert, Button} = this.props;
         return (
-            <Ui.Modal.Dialog>
-                <Ui.Modal.Header title="Backup Details"/>
-                <Ui.Modal.Body>
-                    <Ui.Alert type={this.props.backup.status}>{this.props.backup.statusMsg}</Ui.Alert>
+            <Modal.Dialog>
+                <Modal.Header title="Backup Details"/>
+                <Modal.Body>
+                    <Alert type={this.props.backup.status}>{this.props.backup.statusMsg}</Alert>
                     {this.getBackupDetails(this.props.backup)}
-                </Ui.Modal.Body>
-                <Ui.Modal.Footer>
-                    <Ui.Button label="Close" onClick={this.hide}/>
-                </Ui.Modal.Footer>
-            </Ui.Modal.Dialog>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button label="Close" onClick={this.hide}/>
+                </Modal.Footer>
+            </Modal.Dialog>
         );
     }
 }
 
-export default BackupDetailsModal;
+export default Webiny.createComponent(BackupDetailsModal, {modules: ['Modal', 'Alert', 'Button', 'Filters']});

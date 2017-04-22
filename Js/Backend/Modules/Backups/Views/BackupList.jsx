@@ -1,5 +1,4 @@
 import Webiny from 'Webiny';
-const Ui = Webiny.Ui.Components;
 import LogDetails from './LogDetails';
 import BackupBox from './BackupBox';
 
@@ -17,52 +16,48 @@ BackupList.defaultProps = {
             layout: null
         };
 
+        const {View, Grid, List, Section, ExpandableList, Filters} = this.props;
+
         return (
             <webiny-backup-app>
-                <Ui.View.List>
-                    <Ui.View.Header title="Backups"/>
-
-                    <Ui.View.Body>
-                        <Ui.Grid.Row>
-                            <Ui.Grid.Col all={3}>
+                <View.List>
+                    <View.Header title="Backups"/>
+                    <View.Body>
+                        <Grid.Row>
+                            <Grid.Col all={3}>
                                 <BackupBox backup="24h"/>
-                            </Ui.Grid.Col>
-
-                            <Ui.Grid.Col all={3}>
+                            </Grid.Col>
+                            <Grid.Col all={3}>
                                 <BackupBox backup="48h"/>
-                            </Ui.Grid.Col>
-
-                            <Ui.Grid.Col all={3}>
+                            </Grid.Col>
+                            <Grid.Col all={3}>
                                 <BackupBox backup="weekly"/>
-                            </Ui.Grid.Col>
-
-                            <Ui.Grid.Col all={3}>
+                            </Grid.Col>
+                            <Grid.Col all={3}>
                                 <BackupBox backup="monthly"/>
-                            </Ui.Grid.Col>
+                            </Grid.Col>
+                        </Grid.Row>
+                    </View.Body>
+                </View.List>
 
-                        </Ui.Grid.Row>
-                    </Ui.View.Body>
-                </Ui.View.List>
-
-                <Ui.View.List>
-                    <Ui.View.Body>
-                        <Ui.List {...listProps}>
+                <View.List>
+                    <View.Body>
+                        <List {...listProps}>
                             {(backupLogs, meta) => {
                                 return (
-                                    <Ui.Grid.Row>
-                                        <Ui.Grid.Col all={12}>
-                                            <Ui.Form.Section
-                                                title={`Backup logs: ${meta.totalCount} records (showing ${meta.perPage} per page)`}/>
-                                        </Ui.Grid.Col>
-                                        <Ui.Grid.Col all={12}>
-                                            <Ui.List.Loader/>
-                                            <Ui.List.Table.Empty renderIf={!backupLogs.length}/>
+                                    <Grid.Row>
+                                        <Grid.Col all={12}>
+                                            <Section title={`Backup logs: ${meta.totalCount} records (showing ${meta.perPage} per page)`}/>
+                                        </Grid.Col>
+                                        <Grid.Col all={12}>
+                                            <List.Loader/>
+                                            <List.Table.Empty renderIf={!backupLogs.length}/>
 
-                                            <Ui.ExpandableList>
+                                            <ExpandableList>
                                                 {backupLogs.map(row => {
                                                     return (
-                                                        <Ui.ExpandableList.Row key={row.id}>
-                                                            <Ui.ExpandableList.Field all={3} name="Successful" className="text-center">
+                                                        <ExpandableList.Row key={row.id}>
+                                                            <ExpandableList.Field all={3} name="Successful" className="text-center">
                                                                 {() => {
                                                                     let success = <span className="badge badge-danger">No</span>;
                                                                     if (row.successful) {
@@ -70,40 +65,40 @@ BackupList.defaultProps = {
                                                                     }
                                                                     return success;
                                                                 }}
-                                                            </Ui.ExpandableList.Field>
-                                                            <Ui.ExpandableList.Field all={3} name="Date">
-                                                                <Ui.Filters.DateTime value={row.createdOn}/>
-                                                            </Ui.ExpandableList.Field>
-                                                            <Ui.ExpandableList.Field all={3} name="Execution time">
+                                                            </ExpandableList.Field>
+                                                            <ExpandableList.Field all={3} name="Date">
+                                                                <Filters.DateTime value={row.createdOn}/>
+                                                            </ExpandableList.Field>
+                                                            <ExpandableList.Field all={3} name="Execution time">
                                                                 {row.executionTime}
-                                                            </Ui.ExpandableList.Field>
-                                                            <Ui.ExpandableList.Field all={3} name="Backups created" className="text-center">
+                                                            </ExpandableList.Field>
+                                                            <ExpandableList.Field all={3} name="Backups created" className="text-center">
                                                                 {() => {
                                                                     return _.size(row.backupsCreated);
                                                                 }}
-                                                            </Ui.ExpandableList.Field>
+                                                            </ExpandableList.Field>
 
-                                                            <Ui.ExpandableList.RowDetailsList title={'Backup ' + row.createdOn}>
+                                                            <ExpandableList.RowDetailsList title={'Backup ' + row.createdOn}>
                                                                 <LogDetails log={row.id}/>
-                                                            </Ui.ExpandableList.RowDetailsList>
+                                                            </ExpandableList.RowDetailsList>
 
-                                                        </Ui.ExpandableList.Row>
+                                                        </ExpandableList.Row>
                                                     );
                                                 })}
-                                            </Ui.ExpandableList>
-                                        </Ui.Grid.Col>
-                                        <Ui.Grid.Col all={12}>
-                                            <Ui.List.Pagination/>
-                                        </Ui.Grid.Col>
-                                    </Ui.Grid.Row>
+                                            </ExpandableList>
+                                        </Grid.Col>
+                                        <Grid.Col all={12}>
+                                            <List.Pagination/>
+                                        </Grid.Col>
+                                    </Grid.Row>
                                 );
                             }}
-                        </Ui.List>
-                    </Ui.View.Body>
-                </Ui.View.List>
+                        </List>
+                    </View.Body>
+                </View.List>
             </webiny-backup-app>
         );
     }
 };
 
-export default BackupList;
+export default Webiny.createComponent(BackupList, {modules: ['View', 'Grid', 'List', 'Section', 'ExpandableList', 'Filters']});

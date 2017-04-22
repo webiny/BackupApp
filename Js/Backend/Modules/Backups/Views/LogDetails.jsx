@@ -1,5 +1,4 @@
 import Webiny from 'Webiny';
-const Ui = Webiny.Ui.Components;
 
 class LogDetails extends Webiny.Ui.View {
 
@@ -14,20 +13,22 @@ LogDetails.defaultProps = {
             fields: 'log'
         };
 
+        const {Data, Grid, CodeHighlight} = this.props;
+
         return (
-            <Ui.Data {...logProps}>
+            <Data {...logProps}>
                 {data => (
-                    <Ui.Grid.Row>
-                        <Ui.Grid.Col all={12}>
-                            <Ui.CodeHighlight language="shell">
+                    <Grid.Row>
+                        <Grid.Col all={12}>
+                            <CodeHighlight language="shell">
                                 {data.log}
-                            </Ui.CodeHighlight>
-                        </Ui.Grid.Col>
-                    </Ui.Grid.Row>
+                            </CodeHighlight>
+                        </Grid.Col>
+                    </Grid.Row>
                 )}
-            </Ui.Data>
+            </Data>
         );
     }
 };
 
-export default LogDetails;
+export default Webiny.createComponent(LogDetails, {modules: ['Data', 'Grid', 'CodeHighlight']});

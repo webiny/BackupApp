@@ -1,5 +1,5 @@
 import Webiny from 'Webiny';
-import Views from './Views/Views';
+import SettingsForm from './SettingsForm';
 
 class Module extends Webiny.Module {
 
@@ -16,7 +16,7 @@ class Module extends Webiny.Module {
         );
 
         this.registerRoutes(
-            new Webiny.Route('BackupApp.Settings', '/backup-app/settings', Views.SettingsForm, 'Backup App - Settings')
+            new Webiny.Route('BackupApp.Settings', '/backup-app/settings', SettingsForm, 'Backup App - Settings')
         );
     }
 }

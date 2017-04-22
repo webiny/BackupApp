@@ -1,5 +1,4 @@
 import Webiny from 'Webiny';
-const Ui = Webiny.Ui.Components;
 import BackupDetailsModal from './BackupDetailsModal';
 
 class BackupBox extends Webiny.Ui.View {
@@ -87,33 +86,33 @@ class BackupBox extends Webiny.Ui.View {
 }
 
 BackupBox.defaultProps = {
-
     renderer() {
         return (
-            <Ui.ViewSwitcher>
-                <Ui.ViewSwitcher.View view="backupBoxView" defaultView>
-                    {showView => (
-                        <view>
-                            <Ui.Tile>
-                                <Ui.Tile.Header title={this.props.backup + ' backup'}/>
-                                <Ui.Tile.Body className="text-center">
-                                    <Ui.Icon icon="fa fa-archive icon-4x" className={'text-' + this.state.status}/>
-                                    <hr/>
-                                    <Ui.Alert type={this.state.status}>{this.state.statusMsg}</Ui.Alert>
-                                    <hr/>
-                                    <Ui.Button onClick={showView('backupDetailsModalView')}>View details</Ui.Button>
-                                </Ui.Tile.Body>
-                            </Ui.Tile>
-                        </view>
-                    )}
-                </Ui.ViewSwitcher.View>
-
-                <Ui.ViewSwitcher.View view="backupDetailsModalView" modal>
-                    {(showView, data) => <BackupDetailsModal {...{showView, data}} backup={this.state} />}
-                </Ui.ViewSwitcher.View>
-
-
-            </Ui.ViewSwitcher>
+            <Webiny.Ui.LazyLoad modules={['ViewSwitcher', 'Tile', 'Button', 'Icon', 'Alert']}>
+                {(Ui) => (
+                    <Ui.ViewSwitcher>
+                        <Ui.ViewSwitcher.View view="backupBoxView" defaultView>
+                            {showView => (
+                                <view>
+                                    <Ui.Tile>
+                                        <Ui.Tile.Header title={this.props.backup + ' backup'}/>
+                                        <Ui.Tile.Body className="text-center">
+                                            <Ui.Icon icon="fa fa-archive icon-4x" className={'text-' + this.state.status}/>
+                                            <hr/>
+                                            <Ui.Alert type={this.state.status}>{this.state.statusMsg}</Ui.Alert>
+                                            <hr/>
+                                            <Ui.Button onClick={showView('backupDetailsModalView')}>View details</Ui.Button>
+                                        </Ui.Tile.Body>
+                                    </Ui.Tile>
+                                </view>
+                            )}
+                        </Ui.ViewSwitcher.View>
+                        <Ui.ViewSwitcher.View view="backupDetailsModalView" modal>
+                            {(showView, data) => <BackupDetailsModal {...{showView, data}} backup={this.state} />}
+                        </Ui.ViewSwitcher.View>
+                    </Ui.ViewSwitcher>
+                )}
+            </Webiny.Ui.LazyLoad>
 
         );
     }
