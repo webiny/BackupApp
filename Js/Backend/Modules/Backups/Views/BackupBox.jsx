@@ -97,7 +97,7 @@ BackupBox.defaultProps = {
                                     <Ui.Tile>
                                         <Ui.Tile.Header title={this.props.backup + ' backup'}/>
                                         <Ui.Tile.Body className="text-center">
-                                            <Ui.Icon icon="fa fa-archive icon-4x" className={'text-' + this.state.status}/>
+                                            <Ui.Icon icon="fa fa-archive" size="4x" type={this.state.status}/>
                                             <hr/>
                                             <Ui.Alert type={this.state.status}>{this.state.statusMsg}</Ui.Alert>
                                             <hr/>

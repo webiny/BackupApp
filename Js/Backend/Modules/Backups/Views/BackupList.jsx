@@ -16,7 +16,7 @@ BackupList.defaultProps = {
             layout: null
         };
 
-        const {View, Grid, List, Section, ExpandableList, Filters} = this.props;
+        const {View, Grid, List, Section, ExpandableList, Filters, Label} = this.props;
 
         return (
             <webiny-backup-app>
@@ -59,9 +59,9 @@ BackupList.defaultProps = {
                                                         <ExpandableList.Row key={row.id}>
                                                             <ExpandableList.Field all={3} name="Successful" className="text-center">
                                                                 {() => {
-                                                                    let success = <span className="badge badge-danger">No</span>;
+                                                                    let success = <Label type="danger">No</Label>;
                                                                     if (row.successful) {
-                                                                        success = <span className="badge badge-success">Yes</span>;
+                                                                        success = <Label type="success">Yes</Label>;
                                                                     }
                                                                     return success;
                                                                 }}
@@ -101,4 +101,4 @@ BackupList.defaultProps = {
     }
 };
 
-export default Webiny.createComponent(BackupList, {modules: ['View', 'Grid', 'List', 'Section', 'ExpandableList', 'Filters']});
+export default Webiny.createComponent(BackupList, {modules: ['View', 'Grid', 'List', 'Section', 'ExpandableList', 'Filters', 'Label']});
