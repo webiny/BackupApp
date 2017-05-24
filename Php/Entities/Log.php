@@ -1,8 +1,8 @@
 <?php
 namespace Apps\BackupApp\Php\Entities;
 
-use Apps\Core\Php\DevTools\WebinyTrait;
-use Apps\Core\Php\DevTools\Entity\AbstractEntity;
+use Apps\Webiny\Php\DevTools\WebinyTrait;
+use Apps\Webiny\Php\DevTools\Entity\AbstractEntity;
 
 /**
  * Class Log
@@ -13,7 +13,7 @@ use Apps\Core\Php\DevTools\Entity\AbstractEntity;
  * @property string       $executionTime
  * @property object       $backupsCreated
  *
- * @package Apps\Core\Php\Entities
+ * @package Apps\Webiny\Php\Entities
  *
  */
 class Log extends AbstractEntity

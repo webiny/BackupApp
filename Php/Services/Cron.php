@@ -6,9 +6,9 @@ set_time_limit(0);
 use Apps\BackupApp\Php\Entities\Backup;
 use Apps\BackupApp\Php\Entities\Log;
 use Apps\BackupApp\Php\Entities\Settings;
-use Apps\Core\Php\DevTools\Exceptions\AppException;
-use Apps\Core\Php\DevTools\Services\AbstractService;
-use Apps\Core\Php\DevTools\WebinyTrait;
+use Apps\Webiny\Php\DevTools\Exceptions\AppException;
+use Apps\Webiny\Php\DevTools\Services\AbstractService;
+use Apps\Webiny\Php\DevTools\WebinyTrait;
 
 /**
  * Class Cron

@@ -6,7 +6,7 @@ namespace Apps\BackupApp\Php\Entities;
  *
  * @package Apps\BackupApp\Php\Entities
  */
-class Settings extends \Apps\Core\Php\Entities\Settings
+class Settings extends \Apps\Webiny\Php\Entities\Settings
 {
     protected static $key = 'backup-app';
 }

@@ -1,9 +1,9 @@
 <?php
 namespace Apps\BackupApp\Php;
 
-use Apps\Core\Php\PackageManager\App;
+use Apps\Webiny\Php\PackageManager\App;
 
-class Install extends \Apps\Core\Php\DevTools\LifeCycle\Install
+class Install extends \Apps\Webiny\Php\DevTools\LifeCycle\Install
 {
     public function run(App $app)
     {

@@ -1,8 +1,8 @@
 <?php
 namespace Apps\BackupApp\Php\Entities;
 
-use Apps\Core\Php\DevTools\WebinyTrait;
-use Apps\Core\Php\DevTools\Entity\AbstractEntity;
+use Apps\Webiny\Php\DevTools\WebinyTrait;
+use Apps\Webiny\Php\DevTools\Entity\AbstractEntity;
 
 /**
  * Class Backups
@@ -16,7 +16,7 @@ use Apps\Core\Php\DevTools\Entity\AbstractEntity;
  * @property string  $filename
  * @property string  $status
  *
- * @package Apps\Core\Php\Entities
+ * @package Apps\Webiny\Php\Entities
  *
  */
 class Backup extends AbstractEntity
