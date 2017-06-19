@@ -71,14 +71,16 @@ class BackupDetailsModal extends Webiny.Ui.ModalComponent {
         const {Modal, Alert, Button} = this.props;
         return (
             <Modal.Dialog>
-                <Modal.Header title="Backup Details"/>
-                <Modal.Body>
-                    <Alert type={this.props.backup.status}>{this.props.backup.statusMsg}</Alert>
-                    {this.getBackupDetails(this.props.backup)}
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button label="Close" onClick={this.hide}/>
-                </Modal.Footer>
+                <Modal.Content>
+                    <Modal.Header title="Backup Details"/>
+                    <Modal.Body>
+                        <Alert type={this.props.backup.status}>{this.props.backup.statusMsg}</Alert>
+                        {this.getBackupDetails(this.props.backup)}
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button label="Close" onClick={this.hide}/>
+                    </Modal.Footer>
+                </Modal.Content>
             </Modal.Dialog>
         );
     }
