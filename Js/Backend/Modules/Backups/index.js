@@ -1,6 +1,6 @@
 import Webiny from 'Webiny';
 
-class Module extends Webiny.Module {
+class Module extends Webiny.App.Module {
 
     init() {
         this.name = 'Backups';
