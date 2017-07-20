@@ -1,3 +1,4 @@
+import React from 'react';
 import Webiny from 'Webiny';
 
 class BackupDetailsModal extends Webiny.Ui.ModalComponent {
