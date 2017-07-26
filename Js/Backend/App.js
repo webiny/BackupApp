@@ -1,4 +1,4 @@
-import Webiny from 'Webiny';
+import Webiny from 'webiny';
 import Backups from './Modules/Backups';
 import Settings from './Modules/Settings';
 

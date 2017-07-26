@@ -1,5 +1,5 @@
 import React from 'react';
-import Webiny from 'Webiny';
+import Webiny from 'webiny';
 import BackupDetailsModal from './BackupDetailsModal';
 
 class BackupBox extends Webiny.Ui.View {
