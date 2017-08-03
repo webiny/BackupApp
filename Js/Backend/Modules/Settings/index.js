@@ -1,3 +1,4 @@
+import React from 'react';
 import Webiny from 'webiny';
 
 class Module extends Webiny.App.Module {
@@ -5,17 +6,18 @@ class Module extends Webiny.App.Module {
     init() {
         this.name = 'Settings';
         const Menu = Webiny.Ui.Menu;
+        const role = 'backup-app-manager';
 
         this.registerMenus(
-            new Menu('System', [
-                new Menu('Backups', [
-                    new Menu('Settings', 'BackupApp.Settings')
-                ]).setRole('backup-app-manager')
-            ], 'icon-bell')
+            <Menu label="System" icon="icon-tools">
+                <Menu label="Backups" role={role}>
+                    <Menu label="Settings" route="BackupApp.Settings"/>
+                </Menu>
+            </Menu>
         );
 
         this.registerRoutes(
-            new Webiny.Route('BackupApp.Settings', '/backup-app/settings', () => import('./SettingsForm').then(m => m.default), 'Backup App - Settings')
+            new Webiny.Route('BackupApp.Settings', '/backup-app/settings', () => import('./SettingsForm').then(m => m.default), 'Backup App - Settings').setRole(role)
         );
     }
 }
