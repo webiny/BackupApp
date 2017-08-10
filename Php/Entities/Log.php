@@ -3,6 +3,7 @@ namespace Apps\BackupApp\Php\Entities;
 
 use Apps\Webiny\Php\DevTools\WebinyTrait;
 use Apps\Webiny\Php\DevTools\Entity\AbstractEntity;
+use Webiny\Component\Mongo\Index\SingleIndex;
 
 /**
  * Class Log
@@ -26,6 +27,8 @@ class Log extends AbstractEntity
     public function __construct()
     {
         parent::__construct();
+
+        $this->index(new SingleIndex('createdOn', 'createdOn', false, false, false, 5184000)); // expire after 60 days
 
         $this->attr('successful')->boolean()->setToArrayDefault();
         $this->attr('executionTime')->char()->setToArrayDefault();
