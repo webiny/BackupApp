@@ -1,4 +1,5 @@
 <?php
+
 namespace Apps\BackupApp\Php\Services;
 
 set_time_limit(0);
@@ -6,9 +7,9 @@ set_time_limit(0);
 use Apps\BackupApp\Php\Entities\Backup;
 use Apps\BackupApp\Php\Entities\Log;
 use Apps\BackupApp\Php\Entities\Settings;
+use Apps\Webiny\Php\Lib\Api\ApiContainer;
 use Apps\Webiny\Php\Lib\Exceptions\AppException;
 use Apps\Webiny\Php\Lib\Services\AbstractService;
-use Apps\Webiny\Php\Lib\WebinyTrait;
 
 /**
  * Class Cron
@@ -17,29 +18,26 @@ use Apps\Webiny\Php\Lib\WebinyTrait;
  */
 class Cron extends AbstractService
 {
-    use WebinyTrait;
-
-    function __construct()
+    protected function serviceApi(ApiContainer $api)
     {
-        parent::__construct();
         /**
          * @api.name Create backup
          * @api.description Runs the backup cron job that creates a new backup archive
          */
-        $this->api('get', '/create-backup', function () {
+        $api->get('/create-backup', function () {
             /*
              * We run the backup process as a parallel process so the cron manager timeout doesn't abort the action in case the request times-out.
              */
 
             $token = '--header "X-Webiny-Authorization: ' . urlencode($this->wConfig()->get('Application.Acl.Token')) . '"';
             $path = $this->wConfig()->get('Application.ApiPath') . '/services/backup-app/cron/run-backup-background-process';
-            $cmd = 'curl -X GET ' .$path.' '.$token.' --insecure > /dev/null 2>&1 &';
+            $cmd = 'curl -X GET ' . $path . ' ' . $token . ' --insecure > /dev/null 2>&1 &';
             exec($cmd);
 
             return ['msg' => 'Backup process started - please check the Backup App logs for result.'];
         });
 
-        $this->api('get', '/run-backup-background-process', function () {
+        $api->get('/run-backup-background-process', function () {
             $this->runBackupBackgroundProcess();
         });
     }
@@ -62,7 +60,7 @@ class Cron extends AbstractService
             $logEntity->save();
 
             // update the latest backup entity
-            if($logEntity->successful){
+            if ($logEntity->successful) {
                 $this->updateBackupList($createdBackups);
             }
         } catch (\Exception $e) {
@@ -134,11 +132,11 @@ class Cron extends AbstractService
         ];
 
         $config = [
-            'Folders'           => [$absolutePath],
-            'MongoDatabases'    => $databaseConfigs,
-            'TempPath'          => '/tmp/backups/',
-            'Frequency'         => ['Week', 'Month'],
-            'S3'                => $s3Config
+            'Folders'        => [$absolutePath],
+            'MongoDatabases' => $databaseConfigs,
+            'TempPath'       => '/tmp/backups/',
+            'Frequency'      => ['Week', 'Month'],
+            'S3'             => $s3Config
         ];
 
         // check if the user defined an encryption key

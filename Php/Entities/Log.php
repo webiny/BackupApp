@@ -1,6 +1,8 @@
 <?php
+
 namespace Apps\BackupApp\Php\Entities;
 
+use Apps\Webiny\Php\Lib\Entity\Indexes\IndexContainer;
 use Apps\Webiny\Php\Lib\WebinyTrait;
 use Apps\Webiny\Php\Lib\Entity\AbstractEntity;
 use Webiny\Component\Mongo\Index\SingleIndex;
@@ -8,11 +10,11 @@ use Webiny\Component\Mongo\Index\SingleIndex;
 /**
  * Class Log
  *
- * @property string       $id
- * @property integer      $successful
- * @property string       $log
- * @property string       $executionTime
- * @property object       $backupsCreated
+ * @property string  $id
+ * @property integer $successful
+ * @property string  $log
+ * @property string  $executionTime
+ * @property object  $backupsCreated
  *
  * @package Apps\Webiny\Php\Entities
  *
@@ -28,11 +30,16 @@ class Log extends AbstractEntity
     {
         parent::__construct();
 
-        $this->index(new SingleIndex('createdOn', 'createdOn', false, false, false, 5184000)); // expire after 60 days
-
         $this->attr('successful')->boolean()->setToArrayDefault();
         $this->attr('executionTime')->char()->setToArrayDefault();
         $this->attr('log')->char();
         $this->attr('backupsCreated')->object();
+    }
+
+    protected static function entityIndexes(IndexContainer $indexes)
+    {
+        parent::entityIndexes($indexes);
+        // expire after 60 days
+        $indexes->add(new SingleIndex('createdOn', 'createdOn', false, false, false, 5184000));
     }
 }
