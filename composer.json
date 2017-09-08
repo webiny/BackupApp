@@ -2,6 +2,6 @@
     "name": "webiny/backup-app",
     "type": "webiny-app",
     "require": {
-        "webiny/backup-service": "dev-0.1"
+        "webiny/backup-service": "0.1.x-dev"
     }
 }
