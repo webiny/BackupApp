@@ -3,7 +3,6 @@
 namespace Apps\BackupApp\Php\Entities;
 
 use Apps\Webiny\Php\Lib\Entity\Indexes\IndexContainer;
-use Apps\Webiny\Php\Lib\WebinyTrait;
 use Apps\Webiny\Php\Lib\Entity\AbstractEntity;
 use Webiny\Component\Mongo\Index\SingleIndex;
 
@@ -15,14 +14,10 @@ use Webiny\Component\Mongo\Index\SingleIndex;
  * @property string  $log
  * @property string  $executionTime
  * @property object  $backupsCreated
- *
- * @package Apps\Webiny\Php\Entities
- *
  */
 class Log extends AbstractEntity
 {
-    use WebinyTrait;
-
+    protected static $classId = 'BackupApp.Entities.Log';
     protected static $entityCollection = 'BackupAppLog';
     protected static $entityMask = '{id}';
 

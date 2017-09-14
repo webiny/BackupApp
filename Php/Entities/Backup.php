@@ -1,7 +1,7 @@
 <?php
+
 namespace Apps\BackupApp\Php\Entities;
 
-use Apps\Webiny\Php\Lib\WebinyTrait;
 use Apps\Webiny\Php\Lib\Entity\AbstractEntity;
 
 /**
@@ -15,14 +15,10 @@ use Apps\Webiny\Php\Lib\Entity\AbstractEntity;
  * @property boolean $encrypted
  * @property string  $filename
  * @property string  $status
- *
- * @package Apps\Webiny\Php\Entities
- *
  */
 class Backup extends AbstractEntity
 {
-    use WebinyTrait;
-
+    protected static $classId = 'BackupApp.Entities.Backup';
     protected static $entityCollection = 'BackupAppBackup';
     protected static $entityMask = '{name}';
 
