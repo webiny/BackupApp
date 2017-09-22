@@ -31,8 +31,8 @@ class Cron extends AbstractService
              * We run the backup process as a parallel process so the cron manager timeout doesn't abort the action in case the request times-out.
              */
 
-            $token = '--header "X-Webiny-Authorization: ' . urlencode($this->wConfig()->get('Application.Acl.Token')) . '"';
-            $path = $this->wConfig()->get('Application.ApiPath') . '/services/backup-app/cron/run-backup-background-process';
+            $token = '--header "X-Webiny-Authorization: ' . urlencode($this->wConfig()->get('Webiny.Acl.Token')) . '"';
+            $path = $this->wConfig()->get('Webiny.ApiUrl') . '/services/backup-app/cron/run-backup-background-process';
             $cmd = 'curl -X GET ' . $path . ' ' . $token . ' --insecure > /dev/null 2>&1 &';
             exec($cmd);
 
@@ -84,7 +84,7 @@ class Cron extends AbstractService
         }
 
         // backup files under absolute path
-        $absolutePath = realpath($this->wConfig()->get('Application.AbsolutePath', false));
+        $absolutePath = realpath($this->wConfig()->get('Webiny.AbsolutePath', false));
         if (!$absolutePath) {
             throw new AppException('Unable to resolve application absolute path.');
         }

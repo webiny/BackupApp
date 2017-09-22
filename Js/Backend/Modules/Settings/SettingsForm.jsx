@@ -94,7 +94,7 @@ SettingsForm.defaultProps = {
                                     <p>
                                         The cron should be configured so it executes the following script once a day:
                                     </p>
-                                    <Copy.Input context="cron-job" value={Webiny.Config.ApiPath + '/services/backup-app/cron/create-backup'}/>
+                                    <Copy.Input context="cron-job" value={Webiny.Config.ApiUrl + '/services/backup-app/cron/create-backup'}/>
                                 </Tabs.Tab>
                             </Tabs>
                         </View.Body>
