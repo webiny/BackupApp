@@ -45,7 +45,7 @@ BackupList.defaultProps = {
                 <View.List>
                     <View.Body>
                         <List {...listProps}>
-                            {(backupLogs, meta) => {
+                            {({list, meta}) => {
                                 return (
                                     <Grid.Row>
                                         <Grid.Col all={12}>
@@ -53,10 +53,9 @@ BackupList.defaultProps = {
                                         </Grid.Col>
                                         <Grid.Col all={12}>
                                             <List.Loader/>
-                                            <List.Table.Empty renderIf={!backupLogs.length}/>
-
+                                            <List.Table.Empty renderIf={!list.length}/>
                                             <ExpandableList>
-                                                {backupLogs.map(row => {
+                                                {list.map(row => {
                                                     return (
                                                         <ExpandableList.Row key={row.id}>
                                                             <ExpandableList.Field all={3} name="Successful" className="text-center">
@@ -75,15 +74,11 @@ BackupList.defaultProps = {
                                                                 {row.executionTime}
                                                             </ExpandableList.Field>
                                                             <ExpandableList.Field all={3} name="Backups created" className="text-center">
-                                                                {() => {
-                                                                    return _.size(row.backupsCreated);
-                                                                }}
+                                                                {_.size(row.backupsCreated)}
                                                             </ExpandableList.Field>
-
                                                             <ExpandableList.RowDetailsList title={'Backup ' + row.createdOn}>
                                                                 <LogDetails log={row.id}/>
                                                             </ExpandableList.RowDetailsList>
-
                                                         </ExpandableList.Row>
                                                     );
                                                 })}

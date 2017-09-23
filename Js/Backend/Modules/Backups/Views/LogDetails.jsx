@@ -19,7 +19,7 @@ LogDetails.defaultProps = {
 
         return (
             <Data {...logProps}>
-                {data => (
+                {({data}) => (
                     <Grid.Row>
                         <Grid.Col all={12}>
                             <CodeHighlight language="shell">
