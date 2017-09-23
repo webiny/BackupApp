@@ -11,7 +11,7 @@ SettingsForm.defaultProps = {
         const awsRegionsLink = 'http://docs.aws.amazon.com/general/latest/gr/rande.html#apigateway_region';
         return (
             <Settings api="/entities/backup-app/settings">
-                {(model, container) => (
+                {({form}) => (
                     <View.Form>
                         <View.Header title="Backup App Settings" description="Set your backup settings here"/>
                         <View.Body noPadding>
@@ -99,7 +99,7 @@ SettingsForm.defaultProps = {
                             </Tabs>
                         </View.Body>
                         <View.Footer align="right">
-                            <Button type="primary" onClick={container.submit} label="Save settings"/>
+                            <Button type="primary" onClick={form.submit} label="Save settings"/>
                         </View.Footer>
                     </View.Form>
                 )}
