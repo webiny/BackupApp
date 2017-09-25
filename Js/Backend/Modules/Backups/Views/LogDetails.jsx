@@ -12,7 +12,7 @@ LogDetails.defaultProps = {
             api: '/entities/backup-app/log',
             url: this.props.log,
             fields: 'log',
-            prepareLoadedData: data => data.entity
+            prepareLoadedData: ({data}) => data.entity
         };
 
         const {Data, Grid, CodeHighlight} = this.props;
