@@ -1,6 +1,9 @@
 import React from 'react';
 import Webiny from 'webiny';
 
+/**
+ * @i18n.namespace BackupApp.Backend.Backups.BackupDetailsModal
+ */
 class BackupDetailsModal extends Webiny.Ui.ModalComponent {
 
     constructor(props) {
@@ -73,13 +76,13 @@ class BackupDetailsModal extends Webiny.Ui.ModalComponent {
         return (
             <Modal.Dialog>
                 <Modal.Content>
-                    <Modal.Header title="Backup Details"/>
+                    <Modal.Header title={this.i18n('Backup Details')}/>
                     <Modal.Body>
                         <Alert type={this.props.backup.status}>{this.props.backup.statusMsg}</Alert>
                         {this.getBackupDetails(this.props.backup)}
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button label="Close" onClick={this.hide}/>
+                        <Button label={this.i18n('Close')} onClick={this.hide}/>
                     </Modal.Footer>
                 </Modal.Content>
             </Modal.Dialog>

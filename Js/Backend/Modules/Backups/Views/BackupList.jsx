@@ -4,6 +4,9 @@ import Webiny from 'webiny';
 import LogDetails from './LogDetails';
 import BackupBox from './BackupBox';
 
+/**
+ * @i18n.namespace BackupApp.Backend.Backups.BackupList
+ */
 class BackupList extends Webiny.Ui.View {
 
 }
@@ -23,7 +26,7 @@ BackupList.defaultProps = {
         return (
             <webiny-backup-app>
                 <View.List>
-                    <View.Header title="Backups"/>
+                    <View.Header title={this.i18n('Backups')}/>
                     <View.Body>
                         <Grid.Row>
                             <Grid.Col all={3}>
