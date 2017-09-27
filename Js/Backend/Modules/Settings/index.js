@@ -12,9 +12,9 @@ class Module extends Webiny.App.Module {
         const role = 'backup-app-manager';
 
         this.registerMenus(
-            <Menu label={this.i18n('System')} icon="icon-tools">
-                <Menu label={this.i18n('Backups')} role={role}>
-                    <Menu label={this.i18n('Settings')} route="BackupApp.Settings"/>
+            <Menu label={Webiny.I18n('System')} icon="icon-tools">
+                <Menu label={Webiny.I18n('Backups')} role={role}>
+                    <Menu label={Webiny.I18n('Settings')} route="BackupApp.Settings"/>
                 </Menu>
             </Menu>
         );
