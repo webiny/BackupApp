@@ -16,7 +16,7 @@ SettingsForm.defaultProps = {
             <Settings api="/entities/backup-app/settings">
                 {({form}) => (
                     <View.Form>
-                        <View.Header title={this.i18n('Backup App Settings')} description="Set your backup settings here"/>
+                        <View.Header title={this.i18n('Backup App Settings')} description={this.i18n('Set your backup settings here')}/>
                         <View.Body noPadding>
                             <Tabs size="large">
                                 <Tabs.Tab label={this.i18n('S3 Backup Location')} icon="fa-hdd-o">
@@ -32,7 +32,7 @@ SettingsForm.defaultProps = {
                                             <Input
                                                 label={this.i18n('Bucket Path')}
                                                 name="s3.remotePath"
-                                                description="Example: Projects/MyProject/"
+                                                description={this.i18n('Example: Projects/MyProject/')}
                                                 validate="required"/>
                                         </Grid.Col>
                                     </Grid.Row>
@@ -40,22 +40,23 @@ SettingsForm.defaultProps = {
                                         <Grid.Col all={12}>
                                             <Section title={this.i18n('S3 Region')}/>
                                             <Alert title={this.i18n('Region info:')} close={false}>
-                                                For more information regarding AWS S3 regions, please visit
-                                                &nbsp;<a href={awsRegionsLink} target="_blank">this link</a>
+                                                {this.i18n('For more information regarding AWS S3 regions, please visit {link}', {
+                                                    link: <a href={awsRegionsLink} target="_blank">{this.i18n('this link')}</a>
+                                                })}
                                             </Alert>
                                         </Grid.Col>
                                         <Grid.Col all={6}>
                                             <Input
                                                 label={this.i18n('Region')}
                                                 name="s3.region"
-                                                description="Example: eu-central-1"
+                                                description={this.i18n('Example: eu-central-1')}
                                                 validate="required"/>
                                         </Grid.Col>
                                         <Grid.Col all={6}>
                                             <Input
                                                 label={this.i18n('Endpoint')}
                                                 name="s3.endpoint"
-                                                description="Example: http://s3.eu-central-1.amazonaws.com"
+                                                description={this.i18n('Example: http://s3.eu-central-1.amazonaws.com')}
                                                 validate="required,url"/>
                                         </Grid.Col>
                                     </Grid.Row>
@@ -65,21 +66,21 @@ SettingsForm.defaultProps = {
                                     <Grid.Row>
                                         <Grid.Col all={12}>
                                             <Alert title={this.i18n('Notice:')} close={false}>
-                                                It is highly recommended that you set an encryption key so that your backup is encrypted
-                                                before it's transferred to S3.
+                                                {this.i18n(`It is highly recommended that you set an encryption key so that your backup is encrypted
+                                                before it's transferred to S3.`)}
                                             </Alert>
                                             <Password label={this.i18n('Encryption Key')} name="encryptionKey"/>
                                         </Grid.Col>
                                         <Grid.Col all={12}>
                                             <Section title={this.i18n('Decrypting your backup')}/>
                                             <p>
-                                                To decrypt your backup, download the desired backup image from your S3 and run the following
-                                                command:
+                                                {this.i18n(`To decrypt your backup, download the desired backup image from your S3 and run the following
+                                                command:`)}
                                             </p>
                                             <pre>openssl bf -d &lt; $yourBackupFilename &gt; backup.restored.tar.gz</pre>
                                             <p>
-                                                This will prompt you for your encryption key. If the key is correct, the archive will be
-                                                decrypted and then you can extract it.
+                                                {this.i18n(`This will prompt you for your encryption key. If the key is correct, the archive will be
+                                                decrypted and then you can extract it.`)}
                                             </p>
                                         </Grid.Col>
                                     </Grid.Row>
@@ -88,14 +89,14 @@ SettingsForm.defaultProps = {
                                 <Tabs.Tab label={this.i18n('Cron Setup Guide')} icon="icon-info-circle">
                                     <Section title={this.i18n('About')}/>
                                     <p>
-                                        The Backup App needs to periodically trigger a service that actually creates the backup archives.
+                                        {this.i18n('The Backup App needs to periodically trigger a service that actually creates the backup archives.')}
                                     </p>
                                     <p>
-                                        This service is triggered via a cron job. This cron job can be configured via crontab,
-                                        or via the Webiny Cron Manager app.
+                                        {this.i18n(`This service is triggered via a cron job. This cron job can be configured via crontab,
+                                        or via the Webiny Cron Manager app.`)}
                                     </p>
                                     <p>
-                                        The cron should be configured so it executes the following script once a day:
+                                        {this.i18n('The cron should be configured so it executes the following script once a day:')}
                                     </p>
                                     <Copy.Input context="cron-job" value={Webiny.Config.ApiUrl + '/services/backup-app/cron/create-backup'}/>
                                 </Tabs.Tab>
