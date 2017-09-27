@@ -60,8 +60,8 @@ BackupList.defaultProps = {
                                                         <ExpandableList.Row key={row.id}>
                                                             <ExpandableList.Field all={3} name="Successful" className="text-center">
                                                                 {() => {
-                                                                    let success = <Label type="danger">No</Label>;
-                                                                    if (row.successful) {
+                                                                    let success = <Label type="error">No</Label>;
+                                                                    if (row.successful === true) {
                                                                         success = <Label type="success">Yes</Label>;
                                                                     }
                                                                     return success;
