@@ -19,6 +19,7 @@ use Apps\Webiny\Php\Lib\Services\AbstractService;
 class Cron extends AbstractService
 {
     protected static $classId = 'BackupApp.Services.Cron';
+    protected static $i18nNamespace = 'BackupApp.Services.Cron';
 
     protected function serviceApi(ApiContainer $api)
     {
