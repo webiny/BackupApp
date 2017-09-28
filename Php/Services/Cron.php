@@ -86,7 +86,7 @@ class Cron extends AbstractService
         // backup files under absolute path
         $absolutePath = realpath($this->wConfig()->get('Webiny.AbsolutePath', false));
         if (!$absolutePath) {
-            throw new AppException('Unable to resolve application absolute path.');
+            throw new AppException($this->wI18n('Unable to resolve application absolute path.'));
         }
 
         // backup all database that are defined in the config

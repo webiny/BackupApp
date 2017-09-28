@@ -1,6 +1,9 @@
 import React from 'react';
 import Webiny from 'webiny';
 
+/**
+ * @i18n.namespace BackupApp.Backend.Backups
+ */
 class Module extends Webiny.App.Module {
 
     init() {
@@ -9,9 +12,9 @@ class Module extends Webiny.App.Module {
         const role = 'backup-app-manager';
 
         this.registerMenus(
-            <Menu label="System" icon="icon-tools">
-                <Menu label="Backups" role={role}>
-                    <Menu label="Backups" route="BackupApp.Backups"/>
+            <Menu label={Webiny.I18n('System')} icon="icon-tools">
+                <Menu label={Webiny.I18n('Backups')} role={role}>
+                    <Menu label={Webiny.I18n('Backups')} route="BackupApp.Backups"/>
                 </Menu>
             </Menu>
         );

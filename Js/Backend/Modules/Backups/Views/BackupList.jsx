@@ -4,6 +4,9 @@ import Webiny from 'webiny';
 import LogDetails from './LogDetails';
 import BackupBox from './BackupBox';
 
+/**
+ * @i18n.namespace BackupApp.Backend.Backups.BackupList
+ */
 class BackupList extends Webiny.Ui.View {
 
 }
@@ -23,7 +26,7 @@ BackupList.defaultProps = {
         return (
             <webiny-backup-app>
                 <View.List>
-                    <View.Header title="Backups"/>
+                    <View.Header title={this.i18n('Backups')}/>
                     <View.Body>
                         <Grid.Row>
                             <Grid.Col all={3}>
@@ -49,7 +52,11 @@ BackupList.defaultProps = {
                                 return (
                                     <Grid.Row>
                                         <Grid.Col all={12}>
-                                            <Section title={`Backup logs: ${meta.totalCount} records (showing ${meta.perPage} per page)`}/>
+                                            <Section
+                                                title={this.i18n(`Backup logs: {records|count:1:record:default:records} (showing {perPage} per page)`, {
+                                                    records: meta.totalCount,
+                                                    perPage: meta.perPage
+                                                })}/>
                                         </Grid.Col>
                                         <Grid.Col all={12}>
                                             <List.Loader/>
@@ -58,25 +65,26 @@ BackupList.defaultProps = {
                                                 {list.map(row => {
                                                     return (
                                                         <ExpandableList.Row key={row.id}>
-                                                            <ExpandableList.Field all={3} name="Successful" className="text-center">
+                                                            <ExpandableList.Field all={3} className="text-center">
                                                                 {() => {
-                                                                    let success = <Label type="error">No</Label>;
+                                                                    let success = <Label type="error">{this.i18n('No')}</Label>;
                                                                     if (row.successful === true) {
-                                                                        success = <Label type="success">Yes</Label>;
+                                                                        success = <Label type="success">{this.i18n('Yes')}</Label>;
                                                                     }
                                                                     return success;
                                                                 }}
                                                             </ExpandableList.Field>
-                                                            <ExpandableList.Field all={3} name="Date">
+                                                            <ExpandableList.Field all={3}>
                                                                 <Filters.DateTime value={row.createdOn}/>
                                                             </ExpandableList.Field>
-                                                            <ExpandableList.Field all={3} name="Execution time">
+                                                            <ExpandableList.Field all={3}>
                                                                 {row.executionTime}
                                                             </ExpandableList.Field>
-                                                            <ExpandableList.Field all={3} name="Backups created" className="text-center">
+                                                            <ExpandableList.Field all={3} className="text-center">
                                                                 {_.size(row.backupsCreated)}
                                                             </ExpandableList.Field>
-                                                            <ExpandableList.RowDetailsList title={'Backup ' + row.createdOn}>
+                                                            <ExpandableList.RowDetailsList
+                                                                title={this.i18n('Backup {createdOn|datetime}', {createdOn: row.createdOn})}>
                                                                 <LogDetails log={row.id}/>
                                                             </ExpandableList.RowDetailsList>
                                                         </ExpandableList.Row>

@@ -2,6 +2,9 @@ import React from 'react';
 import Webiny from 'webiny';
 import BackupDetailsModal from './BackupDetailsModal';
 
+/**
+ * @i18n.namespace BackupApp.Backend.Backups.BackupBox
+ */
 class BackupBox extends Webiny.Ui.View {
 
     constructor(props) {
@@ -9,7 +12,7 @@ class BackupBox extends Webiny.Ui.View {
 
         this.state = {
             status: 'info',
-            statusMsg: 'Reading backup status',
+            statusMsg: this.i18n('Reading backup status'),
             backupDetails: null
         };
 
@@ -24,7 +27,7 @@ class BackupBox extends Webiny.Ui.View {
             if (response.getData('list').length < 1) {
                 this.setState({
                     status: 'danger',
-                    statusMsg: 'Backup doesn\'t exist'
+                    statusMsg: Webiny.I18n(`Backup doesn't exist`)
                 });
 
                 return;
@@ -70,12 +73,12 @@ class BackupBox extends Webiny.Ui.View {
             if (isBackupFresh) {
                 this.setState({
                     status: 'success',
-                    statusMsg: 'Backup up to date'
+                    statusMsg: Webiny.I18n('Backup up to date')
                 });
             } else {
                 this.setState({
                     status: 'warning',
-                    statusMsg: 'Backup not refreshed'
+                    statusMsg: Webiny.I18n('Backup not refreshed')
                 });
             }
 
@@ -102,7 +105,7 @@ BackupBox.defaultProps = {
                                             <hr/>
                                             <Ui.Alert type={this.state.status}>{this.state.statusMsg}</Ui.Alert>
                                             <hr/>
-                                            <Ui.Button onClick={showView('backupDetailsModalView')}>View details</Ui.Button>
+                                            <Ui.Button onClick={showView('backupDetailsModalView')}>{this.i18n('View details')}</Ui.Button>
                                         </Ui.Tile.Body>
                                     </Ui.Tile>
                                 </view>

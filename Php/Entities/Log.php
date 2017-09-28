@@ -18,6 +18,7 @@ use Webiny\Component\Mongo\Index\SingleIndex;
 class Log extends AbstractEntity
 {
     protected static $classId = 'BackupApp.Entities.Log';
+    protected static $i18nNamespace = 'BackupApp.Entities.Log';
     protected static $collection = 'BackupAppLog';
     protected static $mask = '{id}';
 
