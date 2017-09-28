@@ -19,6 +19,7 @@ use Apps\Webiny\Php\Lib\Entity\AbstractEntity;
 class Backup extends AbstractEntity
 {
     protected static $classId = 'BackupApp.Entities.Backup';
+    protected static $i18nNamespace = 'BackupApp.Entities.Backup';
     protected static $collection = 'BackupAppBackup';
     protected static $mask = '{name}';
 
