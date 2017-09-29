@@ -1,5 +1,5 @@
 Name: BackupApp
-Version: 0.1.0
+Version: dev-master
 Link: https://github.com/Webiny/BackupApp
 Description: Create regular backups and store them on S3 in just a few clicks
 Author:
