@@ -39,7 +39,7 @@ SettingsForm.defaultProps = {
                                     <Grid.Row>
                                         <Grid.Col all={12}>
                                             <Section title={this.i18n('S3 Region')}/>
-                                            <Alert title={this.i18n('Region info:')} close={false}>
+                                            <Alert title={this.i18n('Region info')} close={false}>
                                                 {this.i18n('For more information regarding AWS S3 regions, please visit {link}', {
                                                     link: <a href={awsRegionsLink} target="_blank">{this.i18n('this link')}</a>
                                                 })}
